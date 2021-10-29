@@ -13,6 +13,12 @@ import TopOffersInMakeup from './TopOffersInMakeup/TopOffersInMakeup'
 import TopOffersInSkin from './TopOffersInSkin/TopOffersInSkin'
 import SummerOfBeauty from './SummerOfBeauty/SummerOfBeauty'
 import MoreOffersForYou from './MoreOffersForYou/MoreOffersForYou'
+import Salon from './Salon/Salon'
+import EditorPick from './EditorPick/EditorPick'
+import ShopByConcern from './ShopByConcern/ShopByConcern'
+import CategoryInFocus from './CategoryInFocus/CategoryInFocus'
+import TopProfessional from './ShopByBrand/TopProfessional'
+import BottomIcons from './BottomIcons/BottomIcons'
 
 const BuyProductsPage = () => {
   return (
@@ -30,6 +36,12 @@ const BuyProductsPage = () => {
       <SpecialSelection/>
       <SummerOfBeauty/>
       <MoreOffersForYou/>
+      <Salon/>
+      <EditorPick/>
+      <ShopByConcern/>
+      <CategoryInFocus/>
+      <TopProfessional/>
+      <BottomIcons/>
     </ScrollView>
   )
 }
@@ -40,6 +52,6 @@ const styles = StyleSheet.create({
   scrollStyle:{
     flexGrow: 1,
     backgroundColor:'#fff',
-    paddingBottom:60,
+    paddingBottom:30,
   },
 })

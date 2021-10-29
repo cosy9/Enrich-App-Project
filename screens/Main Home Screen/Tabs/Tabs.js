@@ -1,8 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { useNavigation } from '@react-navigation/core'
 import MyBooking from "../AllScreens/MyBooking";
 import MyWallet from "../AllScreens/MyWallet";
-import Offers from "../AllScreens/Offers";
+import Offers from "../AllScreens/Offers/Offers";
 import Profile from "../AllScreens/Profile";
 import MainHomeScreen from "../MainHomeScreen";
 import AnIcon from "react-native-vector-icons/AntDesign";
@@ -12,11 +13,13 @@ import IoIcon from "react-native-vector-icons/Ionicons";
 import { View, Text, StyleSheet } from "react-native";
 import BookServicesPage from "../BookServicesPage/BookServicesPage";
 import BuyProductsPage from "../BuyProductsPage/BuyProductsPage";
+import Header from "./Header";
 
 const Tab = createBottomTabNavigator();
 
 
 const Tabs = () => {
+  // const navigation = useNavigation()
   return (
   
     <Tab.Navigator
@@ -57,7 +60,9 @@ const Tabs = () => {
       <Tab.Screen
         options={{
           name: "Offers",
-          header: () => null,
+          header: ({navigation}) => {
+            return(<Header navigation={navigation}/>)
+          },
           tabBarIcon: ({ focused }) => {
             return (
               <View style={styles.ViewStyle}>
