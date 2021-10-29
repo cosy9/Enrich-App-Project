@@ -11,9 +11,7 @@ const MoreOffersForYou = () => {
     </View>
     <View style={styles.FlexItemWrap}>
     {buyNowPageMoreOfferData.map((item)=>{
-      return <MoreOfferItem
-                key={item.id} item={item}
-            />
+      return <MoreOfferItem key={item.id} item={item} />
     })}
     </View>
   </View>
