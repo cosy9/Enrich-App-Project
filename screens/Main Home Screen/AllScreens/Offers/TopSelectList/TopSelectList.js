@@ -3,15 +3,18 @@ import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
 import topSelectListData from '../../../../../assets/data/topSelectListData'
 import TopSelectListItem from './TopSelectListItem'
 
-const TopSelectList = () => {
+const TopSelectList = ({setIsTrending}) => {
   const [list,setList] = useState(topSelectListData)
   let lengthOfItem = topSelectListData.length
-  const updateChecked = (valueIndex) =>{
+
+  const updateChecked = (valueIndex,valueItem) =>{
     let array = [...list]
     array.map((item,index) =>{  
-      index === valueIndex ? (array[index]['checked']=!array[index]['checked']):(array[index]['checked']=false)
+      index === valueIndex ? (array[index]['checked']=true):(array[index]['checked']=false)
+      index === valueIndex ? setIsTrending('Value Packages'):setIsTrending('Trending') 
     })
     setList(array)
+
   }
 
   return (
@@ -20,7 +23,7 @@ const TopSelectList = () => {
         horizontal
       >
         {list.map((item,index)=>{
-            return <TopSelectListItem key={item.id} item={item} index={index} lengthOfItem={lengthOfItem}  onClickHandler={()=>updateChecked(index)} />
+            return <TopSelectListItem key={item.id} item={item} index={index} lengthOfItem={lengthOfItem}  onClickHandler={()=>updateChecked(index,item)} />
         })}
       </ScrollView>
     </View>

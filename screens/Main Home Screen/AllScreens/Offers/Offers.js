@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import TopSelectList from './TopSelectList/TopSelectList'
+import TrendingSection from './TrendingSection/TrendingSection'
+import ValuePackagesSection from './ValuePackagesSection/ValuePackagesSection'
 
 const Offers = () => {
+  const [isTrending,setIsTrending] = useState('Trending')
   return (
     <ScrollView contentContainerStyle={styles.scrollStyle}>
-      <TopSelectList/>
+      <TopSelectList setIsTrending={setIsTrending}/>
+      {isTrending === 'Trending' && <TrendingSection/>}
+      {isTrending === 'Value Packages' && <ValuePackagesSection/>}
     </ScrollView>
   )
 }
