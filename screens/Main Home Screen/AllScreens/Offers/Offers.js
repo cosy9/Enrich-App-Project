@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   scrollStyle:{
     flexGrow: 1,
-    backgroundColor:'#fff',
+    backgroundColor:'#f5f6f8',
     paddingBottom:2,
   },
 })
