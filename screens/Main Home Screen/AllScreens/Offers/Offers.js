@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet,} from 'react-native'
 import TopSelectList from './TopSelectList/TopSelectList'
 import TrendingSection from './TrendingSection/TrendingSection'
 import ValuePackagesSection from './ValuePackagesSection/ValuePackagesSection'

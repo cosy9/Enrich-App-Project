@@ -1,11 +1,20 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/core'
+
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const MoodItem = ({item}) => {
+  const navigation = useNavigation()
   const {title,iconLeft,iconRight} = item
+  const handleClick = (title)=>{
+    if(title ==='Hair Colour'){
+      navigation.navigate('HairColour')
+      return
+    }
+  }
   return (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity onPress={()=>handleClick(title)} style={styles.item}>
       <Image style={styles.image} source={iconLeft}/>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity>

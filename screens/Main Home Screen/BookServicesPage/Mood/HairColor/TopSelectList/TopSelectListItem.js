@@ -6,9 +6,8 @@ const TopSelectListItem = ({item,lengthOfItem,onClickHandler}) => {
   let idNumber = Number(id)
   return (
     <TouchableOpacity onPress={onClickHandler} style={styles.container}>
-      <Text style={styles.text}>{title}</Text>
-      {idNumber === lengthOfItem ? <></>:<View style={styles.line}></View>}
-      {checked && <View style={styles.border}></View>}
+      <Text style={[styles.text,checked && styles.textStyle]}>{title}</Text>
+      {checked && <View style={styles.borderLine}></View>}
     </TouchableOpacity> 
   )
 }
@@ -20,33 +19,30 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal:20,
+    paddingHorizontal:8,
     position: 'relative',
-  },
-  border:{
-    width:'90%',
-    height:2,
-    backgroundColor:'red',
-    position:'absolute',
-    bottom:0,
-  },
-  noBorder:{
-    width:60,
-    height:2,
-    backgroundColor:'pink',
-    position:'absolute',
-    bottom:0,
-
   },
   text:{
     textAlign:'center',
     fontSize:15,
+    borderWidth:1,
+    borderColor:'#ddd',
+    paddingHorizontal:16,
+    paddingVertical:6,
+    borderRadius:5,
+    color:'#1e1e1e',
+    fontFamily:'OpenSans-Medium',
   },
-  line:{
+  textStyle:{
+    backgroundColor:'#2f2f2f',
+    
+    color:'#fff',
+  },
+  borderLine:{
     position:'absolute',
-    backgroundColor:'#ddd',
-    width:2,
-    height:25,
-    right:0,
-  }
+    top:'65%',
+    width:'60%',
+    height:2,
+    backgroundColor:'#a64d4f',
+  },
 })

@@ -7,20 +7,17 @@ const topSelectListData=[
   {
     id:'2',
     title:'Top Brand Offers',
-  checked:false,
-
+    checked:false,
   },
   {
     id:'3',
     title:'Category Offers',
-  checked:false,
-
+    checked:false,
   },
   {
     id:'4',
     title:'Value Packages',
-  checked:false,
-
+    checked:false,
   }
 ]
 
