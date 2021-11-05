@@ -53,13 +53,15 @@ const HairColor = () => {
     setFilteredData(filteredArray)
   }
   // console.log(selectedData);
-  return (
+  return (<>
+        <View>
+          <HairColorHeader isTrue={isTrue} />
+          <TopSelectList selectedData={selectedData} updateChecked={updateChecked} />
+        </View>
       <ScrollView style={styles.scrollStyle}>
-        <HairColorHeader isTrue={isTrue} />
-        <TopSelectList selectedData={selectedData} updateChecked={updateChecked} />
         <HairList isTrue={isTrue} setIsTrue={setIsTrue} filteredData={filteredData} setAllData={setAllData}/>
       </ScrollView>
-  )
+  </>)
 }
 
 export default HairColor

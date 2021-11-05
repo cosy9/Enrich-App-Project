@@ -1,11 +1,19 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity} from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import  Icon  from 'react-native-vector-icons/AntDesign'
 
 const BookAppointmentItem = ({item}) => {
+  const navigation = useNavigation()
+  const handleClick = (title)=>{
+    if(title ==='Salon Service'){
+      navigation.navigate('HairColour')
+      return
+    }
+  }
   const {title,iconLeft,iconRight} = item
   return (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity onPress={()=>handleClick(title)} style={styles.item}>
       <Image style={styles.image} source={iconLeft}/>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity>
