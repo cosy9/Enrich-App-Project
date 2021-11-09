@@ -1,23 +1,26 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image,useWindowDimensions, TouchableOpacity } from 'react-native'
-// import VideoPlayer from 'react-native-video-player'
-
+import { StyleSheet, Text, View,Image,useWindowDimensions, TouchableOpacity, Button } from 'react-native'
+import { Video, AVPlaybackStatus } from 'expo-av';
 
 const FlatListItem = ({item}) => {
+    const videoRef = React.useRef(null);
+    const [status, setStatus] = React.useState({});  
     const{video,thumbnail} = item;
+    // console.log(video);
     const {width} = useWindowDimensions() 
     return (
-        <View style={[styles.container,{width}]}>
-            {/* <VideoPlayer
-              video={video}
-              autoplay={false}
-              defaultMuted={true}
-              width={1500}
-              height={1000}
-              thumbnail={thumbnail}
-            /> */}
-            <Text>jhi</Text>
-        </View>
+    <View style={[styles.container,{width}]}>
+        <Video
+            source={video}
+            resizeMode="cover"
+            isMuted={true}
+            ref={videoRef}
+        style={styles.video}
+        useNativeControls
+        isLooping={false}
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
+        />
+    </View>
     )
 }
 
@@ -26,8 +29,10 @@ export default FlatListItem
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor:'red',
-        elevation:3,
-        height:255,
+        height:360,
+    },
+    video:{
+        width:'100%',
+        height:'100%',
     },
     })

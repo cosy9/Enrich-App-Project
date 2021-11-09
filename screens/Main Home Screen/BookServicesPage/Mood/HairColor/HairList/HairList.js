@@ -5,7 +5,7 @@ import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HairListItem from './HairListItem';
 // import extendedServices from '../../../../../../assets/data/extendedServices';
 // import ExtendedComponent from './ExtendedComponent/ExtendedComponent';
-const HairList = ({filteredData,setAllData,isTrue,setIsTrue}) => {
+const HairList = ({filteredData,isTrue,setIsTrue}) => {
 
   return (
     <View style={[styles.container]}>
@@ -42,77 +42,12 @@ const HairList = ({filteredData,setAllData,isTrue,setIsTrue}) => {
   )
 }
 
-// const HairListItem = ({item})=>{
-//   const [showData,setShowData] = useState(false);
-//   const {title,services,text,isMale} = item;
-//   const [extendedData,setExtendedData] = useState(extendedServices)
-//   const [isAdded,setIsAdded]=useState(false)
-//   const handleOperation = (operation,id)=>{
-//     if(operation ==='inc'){
-//       let newData = extendedData.map(item=>{
-//         if(item.id === id){
-//           item.quantity +=1;
-//         }
-//       })
-//       setExtendedData(newData)
-//       return
-//     } else if(operation ==='dec'){
-//       let newData = extendedData.map(item=>{
-//       if(item.id === id){
-//         if(item.quantity === 0){
-//           item.isAdded = false
-//           return
-//         }
-//         item.quantity -=1;
-//       }
-//     })
-//     setExtendedData(newData)
-//     } else if(operation ==='add'){
-//       let newData = extendedData.map(item=>{
-//         if(item.id === id){
-//           item.isAdded = true
-//           return
-//         }
-//       })
-//       setExtendedData(newData)
-//     }
-//   }
-
-//   // console.log(isMale)
-//   const handleClick = (title)=>{
-//     if(title==='Naturaitual'){
-//       setShowData(!showData);
-//       // console.log('done');
-//     }
-//   }
-//   return(<>
-//   <TouchableOpacity onPress={()=>handleClick(title)} style={styles.item}>
-//     <View style={styles.itemPadded}>
-//     <View style={styles.titleView}>
-//       <Text style={styles.titleText}>{title}</Text>
-//       <AntIcon style={styles.icon} name='downcircleo'/>
-//     </View>
-//     <Text style={styles.services}>{services}</Text>
-//     <Text style={styles.text}>{text}</Text>
-//     </View>
-//   </TouchableOpacity>
-//     {showData && <View style={styles.showData}>
-//       {
-//         extendedData.map((item)=><ExtendedComponent key={item.id} item={item} isAdded={isAdded} setIsAdded={setIsAdded} handleOperation={handleOperation} />)
-//       }
-//       </View>}
-//   </> 
-//   )
-
-// }
-
 export default HairList
 
 const styles = StyleSheet.create({
   container:{
     flex: 1,
     backgroundColor:'#f5f6f8',
-    // backgroundColor:'red',
     height:'auto',
     position:'relative',
 

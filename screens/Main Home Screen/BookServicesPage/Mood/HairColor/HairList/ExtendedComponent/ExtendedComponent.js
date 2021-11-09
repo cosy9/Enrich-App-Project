@@ -10,7 +10,7 @@ const ExtendedComponent = ({item,handleOperation}) => {
   const {id,title,quantity,ratings,reviews,time,price,priceCross,off,moreDetail,para,isAdded,category} = item
 
   const handleMoreDetail =(title,category)=>{
-    console.log('inside more details func');
+    // console.log('inside more details func');
     navigation.navigate('ManiCure',{itemId:1,title:title,category:category})
   } 
 
@@ -21,11 +21,11 @@ const ExtendedComponent = ({item,handleOperation}) => {
         <View style={styles.addView}>
           {isAdded ?
             <View style={styles.addViewOp}>
-                <TouchableOpacity onPress={()=>handleOperation('dec',id)} style={[styles.btnContainer,{marginRight:4}]}>
+                <TouchableOpacity onPress={()=>handleOperation('dec',id)} style={[styles.btnContainer,]}>
                   <Text style={[styles.btn]}>-</Text>
                 </TouchableOpacity>
                 <Text style={styles.quantity}>{quantity}</Text>
-                <TouchableOpacity onPress={()=>handleOperation('inc',id)} style={[styles.btnContainer,{marginLeft:4}]}>
+                <TouchableOpacity onPress={()=>handleOperation('inc',id)} style={[styles.btnContainer,]}>
                   <Text style={[styles.btn]}>+</Text>
                 </TouchableOpacity>
             </View>
@@ -93,13 +93,14 @@ const styles = StyleSheet.create({
     borderRadius:4,
     width:'17%',
     alignItems: 'center',
-    // elevation: 2,
     // backgroundColor:'red'
   },
   addViewOp:{
     flexDirection:'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
+    width:'100%',
+    // backgroundColor:'red',
   },
   btnContainer:{
     alignItems: 'center',

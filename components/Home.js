@@ -41,7 +41,7 @@ const Home  = ({goBack})=> {
     shadowRadius: 0,
         shadowOffset: {
             height: 0,
-        },
+        },  
     borderBottomWidth: 0,
     elevation: 0,
     shadowOpacity: 0,

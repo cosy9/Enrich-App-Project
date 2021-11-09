@@ -1,5 +1,5 @@
 import React,{ useRef } from 'react'
-import { FlatList, StyleSheet, Text, View,Animated } from 'react-native'
+import { FlatList, StyleSheet, Text, View,Animated, Image } from 'react-native'
 import {ExpandingDot} from "react-native-animated-pagination-dots";
 import videoPlayerData from '../../../../../../../assets/data/videoPlayerData'
 import FlatListItem from './FlatListItem'
@@ -23,7 +23,7 @@ const VideoPlayerList = () => {
             scrollEventThrottle={16}
             decelerationRate={'normal'}
             renderItem={({item}) => <FlatListItem item={item} 
-/>}
+        />}
             />    
         </View>
         <View style={styles.expandedStyle}>     
@@ -40,6 +40,12 @@ const VideoPlayerList = () => {
                 }}
             />
         </View>     
+        <View style={styles.textView}>
+            <Image style={styles.image} source={require('../../../../../../../assets/Images/calendar.png')} />
+            <Text style={styles.textBold}>1,357</Text>
+            <Text style={styles.text}>bookings in last</Text>
+            <Text style={styles.textBold}>24 hours</Text>
+        </View>
         </View>
     )
 }
@@ -48,9 +54,8 @@ export default VideoPlayerList
 
 const styles = StyleSheet.create({
     container:{
-        marginTop:18,
         width: '100%',
-        height:290,
+        height:460,
         // backgroundColor: 'red'
     },
     expandedStyle:{
@@ -64,5 +69,27 @@ const styles = StyleSheet.create({
         backgroundColor: '#2f2f2f',
         borderRadius: 5,
         marginHorizontal: 5
+    },
+    textView:{
+        flexDirection:'row',
+        height:60,
+        alignItems: 'center',
+        backgroundColor:'#fff',
+        marginTop:22,
+        paddingLeft:18,
+    },
+    image:{
+        width:20,
+        height:20,
+        resizeMode:'contain',
+        marginRight:6,
+    },
+    textBold:{
+        fontFamily:'OpenSans-ExtraBold',
+        marginRight:6,
+    },
+    text:{
+        fontFamily:'OpenSans-Medium',
+        marginRight:6,
     },
 })
