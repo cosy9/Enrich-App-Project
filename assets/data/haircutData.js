@@ -101,7 +101,7 @@ const haircutData = [
   },
   {
     id:'12',
-    title: 'Head Colour',
+    title: 'Hair Colour',
     services: '9 Services',
     text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     isMale: false,

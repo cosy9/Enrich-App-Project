@@ -5,14 +5,22 @@ import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HairListItem from './HairListItem';
 // import extendedServices from '../../../../../../assets/data/extendedServices';
 // import ExtendedComponent from './ExtendedComponent/ExtendedComponent';
-const HairList = ({filteredData,isTrue,setIsTrue}) => {
+const HairList = ({filteredData,isTrue,setIsTrue,setIsSnack,setTopData,femaleAddMoreData,setFemaleExtendedData}) => {
 
   return (
     <View style={[styles.container]}>
     <View style={[{flexGrow:1}]}> 
       {
         filteredData.map((item)=>{
-      return( <HairListItem key={item.id} item={item} isTrue={isTrue} /> )
+      return( <HairListItem 
+                key={item.id} 
+                item={item} 
+                isTrue={isTrue} 
+                setIsSnack={setIsSnack}
+                setTopData={setTopData}
+                femaleAddMoreData={femaleAddMoreData}
+                setFemaleExtendedData={setFemaleExtendedData}
+              /> )
         })
       }
     </View>

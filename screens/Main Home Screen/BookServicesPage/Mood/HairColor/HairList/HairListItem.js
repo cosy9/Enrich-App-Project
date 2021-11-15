@@ -1,32 +1,43 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import extendedServices from '../../../../../../assets/data/extendedServices';
+// import femaleAddMoreData from '../../../../../../assets/data/femaleAddMoreData';
 import ExtendedComponent from './ExtendedComponent/ExtendedComponent';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 // import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-const HairListItem = ({item,isTrue}) => {
+const HairListItem = ({item,isTrue,setIsSnack,setTopData,femaleAddMoreData,setFemaleExtendedData}) => {
   const [showData,setShowData] = useState(false);
-  const {title,services,text,isMale} = item;
+  const {title,services,text,isMale,isFemale} = item;
   const [extendedData,setExtendedData] = useState(extendedServices)
+  // console.log(extendedData,'extendedData');
   // const [isAdded,setIsAdded]=useState(false)
 
   // console.log(isMale)
-  const handleClick = (title)=>{
-    let filteredData = extendedData.filter(item=>item.category===title && isTrue)
+  const handleClick = (title,isMale,isFemale) => {
+    if(!isTrue) {
+      console.log('not true');
+      let filteredData = extendedData.filter(item=>item.category===title && !item.isMale)
+      if(filteredData.length === 0) return;
+      setExtendedData(filteredData)
+      setShowData(!showData);
+      return
+    }
+    console.log('male data');
+    let filteredData = extendedData.filter(item=>item.category === title && isTrue && item.isMale)
+    if(filteredData.length === 0) return;
     setExtendedData(filteredData)
     // console.log(filteredData,'filteredData');
-    if(filteredData.length === 0) return;
     setShowData(!showData);
   }
 
-  const handleOperation = (operation,id)=>
+  const handleOperation = (operation,obj)=>
   {
     if(operation ==='inc'){
+      // console.log(obj,'id');
       let newData =[...extendedData]
       newData.map(item=>{
-        if(item.id === id){
+        if(item.id === obj.id){
           item.quantity++;
         }
       })
@@ -35,7 +46,7 @@ const HairListItem = ({item,isTrue}) => {
     } else if(operation ==='dec'){
       let newData =[...extendedData]
       newData.map(item=>{
-      if(item.id === id){
+      if(item.id === obj.id){
         if(item.quantity === 1){
           item.isAdded = false
           return
@@ -45,9 +56,18 @@ const HairListItem = ({item,isTrue}) => {
     })
     setExtendedData(newData)
     } else if(operation ==='add'){
+      if(obj.options){
+        console.log('options exist',obj.title);
+        let newData = femaleAddMoreData.filter((item)=> obj.title === item.category)
+        setFemaleExtendedData(newData)
+        // console.log(femaleExtendedData);
+        setTopData(obj)
+        setIsSnack(true)
+        return
+      }
       let newData =[...extendedData]
       newData.map(item=>{
-        if(item.id === id){
+        if(item.id === obj.id){
           item.isAdded = true
           return
         }
@@ -57,7 +77,7 @@ const HairListItem = ({item,isTrue}) => {
     }
   }
   return(<>
-  <TouchableOpacity onPress={()=>handleClick(title)} style={styles.item}>
+  <TouchableOpacity onPress={()=>handleClick(title,isMale,isFemale)} style={styles.item}>
     <View style={styles.itemPadded}>
     <View style={styles.titleView}>
       <Text style={styles.titleText}>{title}</Text>

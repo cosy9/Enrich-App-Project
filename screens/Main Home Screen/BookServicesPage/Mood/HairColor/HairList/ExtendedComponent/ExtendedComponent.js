@@ -7,11 +7,13 @@ import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ExtendedComponent = ({item,handleOperation}) => {
   const navigation = useNavigation()
-  const {id,title,quantity,ratings,reviews,time,price,priceCross,off,moreDetail,para,isAdded,category} = item
+  const {id,title,quantity,ratings,reviews,time,price,priceCross,off,moreDetail,para,isAdded,category,options} = item
 
   const handleMoreDetail =(title,category)=>{
     // console.log('inside more details func');
-    navigation.navigate('ManiCure',{itemId:1,title:title,category:category})
+    console.log(category);
+    if(category=== 'Manicure-Classic') navigation.navigate('ManiCure',{itemId:1,title:title,category:category})
+    if(category=== 'Hair Colour') navigation.navigate('NestedHairColor',{itemId:2,title:title,category:category})
   } 
 
   return (<>
@@ -21,28 +23,31 @@ const ExtendedComponent = ({item,handleOperation}) => {
         <View style={styles.addView}>
           {isAdded ?
             <View style={styles.addViewOp}>
-                <TouchableOpacity onPress={()=>handleOperation('dec',id)} style={[styles.btnContainer,]}>
+                <TouchableOpacity onPress={()=>handleOperation('dec',{id,title,ratings,reviews,options})} style={[styles.btnContainer,]}>
                   <Text style={[styles.btn]}>-</Text>
                 </TouchableOpacity>
                 <Text style={styles.quantity}>{quantity}</Text>
-                <TouchableOpacity onPress={()=>handleOperation('inc',id)} style={[styles.btnContainer,]}>
+                <TouchableOpacity onPress={()=>handleOperation('inc',{id,title,ratings,reviews,options})} style={[styles.btnContainer,]}>
                   <Text style={[styles.btn]}>+</Text>
                 </TouchableOpacity>
             </View>
               :
-            <TouchableOpacity onPress={()=>handleOperation('add',id)}>
+            <TouchableOpacity onPress={()=>handleOperation('add',{id,title,ratings,reviews,options})}>
               <Text style={styles.addPlus}>Add+</Text>
             </TouchableOpacity>
           }
         </View>
       </View>
-      <View style={styles.reviewRowView}>
-        <Text style={styles.ratings}>
-          {ratings}
-        </Text>
-        <AnIcon style={[styles.icon,{color:'#ffb917',fontSize:11}]} name='star'/>
-        <View style={styles.line}></View>
-        <Text style={styles.reviews}>{reviews}</Text>
+      <View style={[styles.reviewRowView,]}>
+        <View style={styles.leftRowReview}>
+          <Text style={styles.ratings}>
+            {ratings}
+          </Text> 
+          <AnIcon style={[styles.icon,{color:'#ffb917',fontSize:11}]} name='star'/>
+          <View style={styles.line}></View>
+          <Text style={styles.reviews}>{reviews}</Text>
+        </View>
+        {options && <Text style={{color:'#aaa',fontSize:12,marginRight:5,}}>{options}</Text>}
       </View>
       <View style={styles.rowTimer}>
           <MaIcon style={[styles.icon,{color:'#2b2a29'}]} name='alarm'/>
@@ -81,7 +86,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height:60,
+    marginTop: 22,
+    marginBottom:3,
   },
   titleText:{
     color:'#2b2a29',
@@ -129,7 +135,12 @@ const styles = StyleSheet.create({
   reviewRowView:{
     flexDirection:'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
+  },
+  leftRowReview:{
+    flexDirection:'row',
+    alignItems: 'center',
+    // backgroundColor:'red'
   },
   ratings:{
     fontSize:14,
@@ -138,8 +149,9 @@ const styles = StyleSheet.create({
   },
   line:{
     width:0.7,
-    height:'60%',
-    backgroundColor:'#000',
+    height:8,
+    backgroundColor:'#aaa',
+    color:'red',
     marginHorizontal:7,
   },
   reviews:{
@@ -175,7 +187,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     // backgroundColor:'red',
-    width:'44%',
   },
   price:{
     fontSize:15.4,
@@ -187,6 +198,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
     textDecorationStyle: 'solid',
     fontSize:13.2,
+    marginHorizontal:5,
   },
   off:{
     color:'#eb6165',
