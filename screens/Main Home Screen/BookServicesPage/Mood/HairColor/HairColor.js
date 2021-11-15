@@ -4,14 +4,13 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AnIcon from 'react-native-vector-icons/AntDesign';
 import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import topSelectListHairData from '../../../../../assets/data/topSelectListHairData'
-import femaleAddMoreData from '../../../../../assets/data/femaleAddMoreData'
+import AddMoreData from '../../../../../assets/data/AddMoreData'
 import haircutData from '../../../../../assets/data/haircutData'
 import HairColorHeader from './HairColorHeader/HairColorHeader'
 import HairList from './HairList/HairList'
 import TopSelectList from './TopSelectList/TopSelectList'
 
   let filteredDataHair = haircutData.filter(item=>item.category === 'Hair')
-  // console.log(filteredDataHair,'filteredDataHair');
 
 const HairColor = () => {
   const [isTrue,setIsTrue]=useState(true) // male or female
@@ -20,7 +19,7 @@ const HairColor = () => {
   const [filteredData,setFilteredData] = useState(filteredDataHair) // all data but filtered
   const [isSnack,setIsSnack] = useState(false)
   const [topData,setTopData] = useState(null)
-  const [femaleExtendedData,setFemaleExtendedData] = useState(femaleAddMoreData)
+  const [femaleExtendedData,setFemaleExtendedData] = useState(AddMoreData)
   // console.log(femaleExtendedData,'female data');
   let length = femaleExtendedData.length.toString() ? femaleExtendedData.length.toString():0
 
@@ -115,7 +114,7 @@ const HairColor = () => {
           setAllData={setAllData}
           setIsSnack={setIsSnack}
           setTopData={setTopData}
-          femaleAddMoreData={femaleAddMoreData}
+          AddMoreData={AddMoreData}
           setFemaleExtendedData={setFemaleExtendedData}
           />
       </ScrollView>
@@ -139,13 +138,13 @@ const HairColor = () => {
           <View style={{width:'100%',height:1,backgroundColor:'#ddd',marginTop:18}}></View>
           {
             femaleExtendedData.map((item)=>{
-              const {category,title,perStreak,text,time,price,priceCross,off,isAdded,quantity,id} = item
+              const {category,offColor,title,perStreak,text,time,price,priceCross,off,isAdded,quantity,id} = item
               return(
                 <View key={id} style={styles.radioItem}>
                 <View style={styles.itemTitleRow}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Text style={styles.itemTitle}>{title}</Text>
-                    <Text style={styles.perStreak}>{perStreak}</Text>
+                    {perStreak && <Text style={styles.perStreak}>{perStreak}</Text>}
                   </View>
                   <View style={styles.addView}>
                     {isAdded ?
@@ -172,8 +171,8 @@ const HairColor = () => {
                 </View>
                 <View style={styles.priceView}>
                     <Text style={styles.price}>{price}</Text>
-                    <Text style={styles.priceCross}>{priceCross}</Text>
-                    <Text style={styles.off}>{off}</Text>
+                    {priceCross && <Text style={styles.priceCross}>{priceCross}</Text>}
+                    {off && <Text style={[styles.off,offColor && {color:offColor}]}>{off}</Text>}
                 </View>
                 <View style={[styles.borderDashed]}></View>
               </View>)
@@ -190,7 +189,6 @@ export default HairColor
 const styles = StyleSheet.create({
   scrollStyle:{
     flexGrow: 1,
-    paddingBottom:2,
     // backgroundColor:'pink',
   },
   snackContainer:{
@@ -206,8 +204,8 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
     height:'70%',
     width:'100%',
-    borderTopLeftRadius:8,
-    borderTopRightRadius:8,
+    borderTopLeftRadius:10,
+    borderTopRightRadius:10,
     elevation:3,
   },
   snackWrapper:{

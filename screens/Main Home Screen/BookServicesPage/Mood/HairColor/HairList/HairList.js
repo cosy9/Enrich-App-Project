@@ -5,25 +5,33 @@ import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HairListItem from './HairListItem';
 // import extendedServices from '../../../../../../assets/data/extendedServices';
 // import ExtendedComponent from './ExtendedComponent/ExtendedComponent';
-const HairList = ({filteredData,isTrue,setIsTrue,setIsSnack,setTopData,femaleAddMoreData,setFemaleExtendedData}) => {
-
+const HairList = ({filteredData,isTrue,setIsTrue,setIsSnack,setTopData,AddMoreData,setFemaleExtendedData}) => {
+  // console.log(filteredData.length,'length')
+  const [isExtended,setIsExtended]= useState(false)
+  let length = filteredData.length
+  let isSmaller;
+  if(length<6){
+    isSmaller = true
+  }
   return (
-    <View style={[styles.container]}>
-    <View style={[{flexGrow:1}]}> 
+    <View style={[styles.container,isSmaller && !isExtended ? {marginBottom:'50%'}:{marginBottom:0}]}>
       {
         filteredData.map((item)=>{
-      return( <HairListItem 
+      return(<HairListItem 
                 key={item.id} 
                 item={item} 
                 isTrue={isTrue} 
                 setIsSnack={setIsSnack}
                 setTopData={setTopData}
-                femaleAddMoreData={femaleAddMoreData}
+                AddMoreData={AddMoreData}
                 setFemaleExtendedData={setFemaleExtendedData}
-              /> )
+                setIsExtended={setIsExtended}
+                isExtended={isExtended}
+              />
+            )
         })
       }
-    </View>
+      <View style={{marginBottom:'auto',backgroundColor:'#f5f6f8',height:'100%',flexGrow:1,width:'100%',}}></View>
       <View style={styles.bottomIcons}>
         <View style={[styles.bottomIconView,styles.switchView]}>
         <Switch
@@ -54,11 +62,11 @@ export default HairList
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1,
+    flexGrow: 1,
     backgroundColor:'#f5f6f8',
-    height:'auto',
-    position:'relative',
-
+    // backgroundColor:'#000',
+    height:'100%',
+    
   },
   item:{
     width:'100%',
@@ -102,11 +110,13 @@ const styles = StyleSheet.create({
   bottomIcons:{
     width:'100%',
     height:67,
+    // backgroundColor:'#fff',
     backgroundColor:'#fff',
     flexDirection:'row',
     justifyContent:'space-around',
     alignItems:'center',
     elevation:2,
+    marginTop:'auto',
   },
   bottomIconView:{
     flexDirection:'row',

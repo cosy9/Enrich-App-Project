@@ -7,7 +7,7 @@ import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ExtendedComponent = ({item,handleOperation}) => {
   const navigation = useNavigation()
-  const {id,title,quantity,ratings,reviews,time,price,priceCross,off,moreDetail,para,isAdded,category,options} = item
+  const {id,title,quantity,ratings,reviews,time,price,priceCross,off,moreDetail,para,isAdded,category,options,isTrending,isNew} = item
 
   const handleMoreDetail =(title,category)=>{
     // console.log('inside more details func');
@@ -16,8 +16,12 @@ const ExtendedComponent = ({item,handleOperation}) => {
     if(category=== 'Hair Colour') navigation.navigate('NestedHairColor',{itemId:2,title:title,category:category})
   } 
 
-  return (<>
+  return (<View style={{height:'auto'}}>
     <View  style={styles.extendView}>
+      <View style={{flexDirection: 'row',marginTop:20,}}>
+        {isTrending && <Text style={{backgroundColor:'#ffecf2',color:'#ff0753',borderRadius:7,fontSize:12,fontWeight:'bold',paddingHorizontal:10,paddingVertical:1.3}}>TRENDING</Text>}
+        {isNew && <Text style={{backgroundColor:'#dddbff',color:'#8179ff',borderRadius:7,marginLeft:5,paddingHorizontal:10,paddingVertical:1.3, fontSize:12,fontWeight:'bold'}}>NEW</Text>}
+      </View>
       <View style={styles.rowViewTop}>
         <Text style={styles.titleText}>{title}</Text>
         <View style={styles.addView}>
@@ -70,7 +74,7 @@ const ExtendedComponent = ({item,handleOperation}) => {
       <Text style={styles.para}>{para}</Text>
     </View>
       <View style={styles.borderBottomParaStyles}></View> 
-    </>
+    </View>
   )
 }
 
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 22,
+    marginTop: 8,
     marginBottom:3,
   },
   titleText:{

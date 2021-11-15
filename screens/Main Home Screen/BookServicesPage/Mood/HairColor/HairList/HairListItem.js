@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import extendedServices from '../../../../../../assets/data/extendedServices';
-// import femaleAddMoreData from '../../../../../../assets/data/femaleAddMoreData';
+// import AddMoreData from '../../../../../../assets/data/AddMoreData';
 import ExtendedComponent from './ExtendedComponent/ExtendedComponent';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 // import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const HairListItem = ({item,isTrue,setIsSnack,setTopData,femaleAddMoreData,setFemaleExtendedData}) => {
+const HairListItem = ({item,isTrue,setIsSnack,setTopData,AddMoreData,setFemaleExtendedData,setIsExtended,isExtended}) => {
   const [showData,setShowData] = useState(false);
   const {title,services,text,isMale,isFemale} = item;
   const [extendedData,setExtendedData] = useState(extendedServices)
@@ -21,6 +21,7 @@ const HairListItem = ({item,isTrue,setIsSnack,setTopData,femaleAddMoreData,setFe
       if(filteredData.length === 0) return;
       setExtendedData(filteredData)
       setShowData(!showData);
+      setIsExtended(!isExtended)
       return
     }
     console.log('male data');
@@ -29,6 +30,7 @@ const HairListItem = ({item,isTrue,setIsSnack,setTopData,femaleAddMoreData,setFe
     setExtendedData(filteredData)
     // console.log(filteredData,'filteredData');
     setShowData(!showData);
+    setIsExtended(!isExtended)
   }
 
   const handleOperation = (operation,obj)=>
@@ -58,7 +60,7 @@ const HairListItem = ({item,isTrue,setIsSnack,setTopData,femaleAddMoreData,setFe
     } else if(operation ==='add'){
       if(obj.options){
         console.log('options exist',obj.title);
-        let newData = femaleAddMoreData.filter((item)=> obj.title === item.category)
+        let newData = AddMoreData.filter((item)=> obj.title === item.category)
         setFemaleExtendedData(newData)
         // console.log(femaleExtendedData);
         setTopData(obj)
@@ -76,7 +78,7 @@ const HairListItem = ({item,isTrue,setIsSnack,setTopData,femaleAddMoreData,setFe
     // console.log('clicked',operation,id);
     }
   }
-  return(<>
+  return(<View>
   <TouchableOpacity onPress={()=>handleClick(title,isMale,isFemale)} style={styles.item}>
     <View style={styles.itemPadded}>
     <View style={styles.titleView}>
@@ -95,7 +97,7 @@ const HairListItem = ({item,isTrue,setIsSnack,setTopData,femaleAddMoreData,setFe
         extendedData.map((item)=><ExtendedComponent key={item.id} item={item} handleOperation={handleOperation} />)
       }
       </View>}
-  </> 
+  </View> 
   )
 }
 
@@ -104,12 +106,13 @@ export default HairListItem
 const styles = StyleSheet.create({
   item:{
     width:'100%',
+    // height:'100%',
     paddingVertical:12,
     justifyContent:'center',
     backgroundColor:'#f5f6f8',
+    // backgroundColor:'green',
     borderBottomWidth:2,
     borderBottomColor:'#edeef0',
-
   },
   itemPadded:{
     width:'90%',
@@ -143,5 +146,6 @@ const styles = StyleSheet.create({
     showData:{
     backgroundColor:'#fff',
     width:'100%',
+    height:'auto',
   }
 })
