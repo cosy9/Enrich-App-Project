@@ -130,9 +130,9 @@ const HomeScreen = () => {
               <View style={styles.Terms}>
                 <Text style={styles.TermsText}>By creating an account, you agree to our</Text>
                 <Text style={styles.TermsLine2}>
-                  <Text style={styles.TermsLink} onPress={()=>Linking.openURL('https://google.com')}>Terms & Conditions</Text>
+                  <Text style={styles.TermsLink} onPress={()=>Linking.openURL('https://google.com')}> Terms & Conditions </Text>
                   and agree to 
-                  <Text style={styles.TermsLink} onPress={()=>Linking.openURL('https://google.com')}>Privacy Policy</Text>
+                  <Text style={styles.TermsLink} onPress={()=>Linking.openURL('https://google.com')}> Privacy Policy.</Text>
                 </Text>
               </View>
         </View>

@@ -23,7 +23,6 @@ import TopFaves from './TopFaves/TopFaves';
 import TrendingPamper from './TrendingPamper/TrendingPamper';
 
 const BookServicesPage = () => {
-
   return (
     <ScrollView contentContainerStyle={styles.scrollStyle}>
         <Header/>

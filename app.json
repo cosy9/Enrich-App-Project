@@ -4,9 +4,9 @@
     "slug": "FirebaseAuth",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon-enrich.png",
+    "icon": "./assets/enrichIcon.png",
     "splash": {
-      "image": "./assets/splash-enrich.png",
+      "image": "./assets/splashScreen.png",
       "resizeMode": "contain",
       "backgroundColor": "#f5f6f8"
     },

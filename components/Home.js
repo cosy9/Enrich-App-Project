@@ -14,6 +14,9 @@ import Makeup from '../screens/Main Home Screen/Drawer/Makeup';
 import Nails from '../screens/Main Home Screen/Drawer/Nails';
 import ShoppingBag from '../screens/Main Home Screen/ShoppingBag';
 import BookServicesPage from '../screens/Main Home Screen/BookServicesPage/BookServicesPage';
+import HairColor from '../screens/Main Home Screen/BookServicesPage/Mood/HairColor/HairColor';
+import ManiCure from '../screens/Main Home Screen/BookServicesPage/Mood/HairColor/MainCure/ManiCure';
+import NestedHairColor from '../screens/Main Home Screen/BookServicesPage/Mood/HairColor/NestedHairColor/NestedHairColor';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +42,7 @@ const Home  = ({goBack})=> {
     shadowRadius: 0,
         shadowOffset: {
             height: 0,
-        },
+        },  
     borderBottomWidth: 0,
     elevation: 0,
     shadowOpacity: 0,
@@ -116,7 +119,7 @@ const Home  = ({goBack})=> {
         }}
         component={Draw}
         />
-        
+      
         <Stack.Screen
           options={{
             header: () => null,
@@ -133,9 +136,26 @@ const Home  = ({goBack})=> {
           options={{
             header: () => null,
           }}
+          name="HairColour" component={HairColor} 
+        />
+        <Stack.Screen
+          options={{
+            header: () => null,
+          }}
+          name="ManiCure" component={ManiCure} 
+        />
+        <Stack.Screen
+          options={{
+            header: () => null,
+          }}
+          name="NestedHairColor" component={NestedHairColor} 
+        />
+        <Stack.Screen
+          options={{
+            header: () => null,
+          }}
           name="BookServicesPage" component={BookServicesPage} 
         />
-        
       </Stack.Navigator>
     </NavigationContainer>
   );

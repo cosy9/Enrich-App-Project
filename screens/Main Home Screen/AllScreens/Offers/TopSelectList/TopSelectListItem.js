@@ -1,20 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-const TopSelectListItem = ({item,index,lengthOfItem}) => {
+const TopSelectListItem = ({item,lengthOfItem,onClickHandler}) => {
   const {title,id,checked} = item
-  const [titleCheck,setTitleCheck] = useState('Trending')
   let idNumber = Number(id)
-  const handleClick = (title) =>{
-    console.log(title);
-    setTitleCheck(title)
-    // console.log('value',value);
-  }
   return (
-    <TouchableOpacity onPress={()=>handleClick(title)} style={styles.container}>
+    <TouchableOpacity onPress={onClickHandler} style={styles.container}>
       <Text style={styles.text}>{title}</Text>
       {idNumber === lengthOfItem ? <></>:<View style={styles.line}></View>}
-      {titleCheck === title && <View style={styles.border}></View>}
+      {checked && <View style={styles.border}></View>}
     </TouchableOpacity> 
   )
 }
@@ -30,9 +24,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   border:{
-    // borderBottomWidth:2,
-    // borderBottomColor:'red',
-    width:60,
+    width:'90%',
     height:2,
     backgroundColor:'red',
     position:'absolute',

@@ -81,7 +81,10 @@ const Tabs = () => {
               </View>
             );
           },
+          tabBarVisible:false,
+          tabBarStyle: { display: 'none' },
         }}
+        
         name="Offers"
         component={Offers}
       />
